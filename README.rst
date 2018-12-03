@@ -11,7 +11,7 @@ Installation guide
 Using test PyPi:
 ::
 
-    $ python3.7 -m pip install --extra-index-url https://testpypi.python.org/pypi/filabel-sphinx
+    $ python3.7 -m pip install -i https://test.pypi.org/simple/ filabel-sphinx
 
 
 If you do not wish to use test PyPi, then clone the Filabel repository and locate it through command line. 
@@ -72,7 +72,16 @@ After installing sphinx, navigate to the docs folder and build the documentation
 After successful build, open ``docs/_build/html/index.html`` in a web browser of your choice.
 
 
-The sphinx documentation also contains a few doctests. To run those, navigate again to docs folder and run:
+
+The sphinx documentation also contains a few doctests. However, they have a few pre-requisities. Firstly, setup environment variables ``GH_USER`` to your github username and ``GH_TOKEN`` to your github token. Secondly, run ``test_environmet/setup.sh`` to setup the testing environment.
+
+::
+
+    $ export GH_USER=<username>
+    $ export GH_TOKEN=<token>
+    $ ./test_environment/setup.sh
+
+Finally, to run the doctest, navigate again to docs folder and run:
 
 ::
 
