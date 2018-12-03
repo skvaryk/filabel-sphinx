@@ -72,6 +72,8 @@ After installing sphinx, navigate to the docs folder and build the documentation
 After successful build, open ``docs/_build/html/index.html`` in a web browser of your choice.
 
 
+Doctest
+_______
 
 The sphinx documentation also contains a few doctests. However, they have a few pre-requisities. Firstly, setup environment variables ``GH_USER`` to your github username and ``GH_TOKEN`` to your github token. Secondly, run ``test_environmet/setup.sh`` to setup the testing environment.
 
@@ -81,7 +83,7 @@ The sphinx documentation also contains a few doctests. However, they have a few 
     $ export GH_TOKEN=<token>
     $ ./test_environment/setup.sh
 
-Finally, to run the doctest, navigate again to docs folder and run:
+Finally, to run the doctest, navigate again to docs folder and ``make doctest``:
 
 ::
 
