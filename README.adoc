@@ -1,0 +1,133 @@
+= filabel
+:toc:
+:note-caption: :information_source:
+:warning-caption: :warning:
+
+Tool for labeling PRs at GitHub by globs.
+
+
+== Zadání úkolu 5
+
+Vaším úkolem za 5 bodů je vytvořit pomocí http://www.sphinx-doc.org[Sphinx] 
+dokumentaci k vašemu projektu `filabel`.
+
+Měla by obsahovat textovou část, ze které bude jasné, co je, k čemu je,
+jak se nainstaluje a jak se používá vaše aplikace. Můžete předpokládat, že
+uživatel ví, co je to GitHub, issue, pull request, label, repozitář apod.
+Nepředpokládejte ale, že ví, kde najde API token či webhook, že ví, co to je,
+jak se k nim chovat apod.
+
+Pokud hypoteticky ukážeme dokumentaci kolegům, kteří nikdy neviděli zadání
+vašeho úkolu, musí to pro ně být stejně pochopitelné.
+
+Dále by dokumentace měla obsahovat textovou část s ukázkami kódu, které se
+testují pomocí doctestu. Tato část může vysvětlovat, jak váš kód použít pro
+výrobu jiné aplikace, nebo může popisovat, jak aplikace uvnitř funguje.
+
+V dokumentaci by měla existovat kapitola s *kompletní* API dokumentací vašich
+modulů, tříd, funkcí apod. Všechny tyto věci musí mít v kódu dokumentační
+řetězce, které v dokumentaci musí být zobrazeny (t.j. změna dokumentačního
+řetězce se automaticky promítne ve vygenerované dokumentaci).
+
+Jak sestavit a testovat dokumentaci by mělo být jasné z `README.rst`
+(a to musí mít http://docutils.sourceforge.net/docs/ref/rst/restructuredtext.html[reStructuredText]
+syntaxi).
+
+Generování dokumentace ani doctesty nesmí způsobit chybu ani varování.
+Potlačení chybových a varovných hlášek (např. konfigurací, přesměrováním
+*stderr*, apod.) je povoleno jen po konzultaci s cvičícím.
+
+Na Travis CI spouštějte dokumentační testy.
+
+Dokumentace musí být v angličtině.
+
+Dosavadní funkcionalita aplikace musí být samozřejmě zachována.
+
+Úkol odevzdáváte tradičně ve svém repozitáři pro projekt `filabel` s tagem `v0.5` 
+a nahráním nové verze na (testovací či pravou) PyPI.
+_(Nahrání je nutné – čtenář dokumentace k verzi 0.5 se bude dívat po balíčku
+této verze.)_
+
+Za fungující publikaci smysluplné dokumentace na https://readthedocs.org/[Read the Docs]
+je bod navíc.
+
+
+== Automatické testy
+
+Veškeré dodané testy z minulých úkolů série `filabel` včetně vašich vlastních
+testů musí stále procházet.
+
+Následuje text z minula, který stále platí:
+
+WARNING: Testy **netestují splnění tohoto úkolu**,
+Testují pouze to, že se nic nerozbilo
+a že funguje, co dříve fungovalo.
+
+NOTE: Před spuštěním testů předpokládejte, že je váš balíček nainstalován.
+Toho můžete docílit například pomocí `python setup.py develop`
+nebo `pip install -e.`
+
+Nově jsou dodány extra testy ve složce `test_module`, které simulují reálnou instalaci
+vašeho balíčku `filabel` z naklonovaného repozitáře i z testovací PyPI. Navíc testují
+i další náležitosti požadované v tomto zadání (sdist bez warningů, submoduly, závislosti,
+klíčová slova a další metadata). Tyto testy vyžadují nastavené proměnné prostředí
+`CTU_USERNAME` a `FILABEL_REPO` pro získání vaší verze filabelu (pipem a gitem). V rámci
+testů spouští subprocesy a pokud se na vašem OS jmenují jinak nebo jsou v jiné cestě, než
+standardně na Linuxu, budete muset upravit soubor `fixtures/test_config.cfg`. V případě
+potřeby založte issue. Tyto testy nepracují s aktuálním kódem „kolem nich“, ale s tím, co
+je dostupné přes PyPI (publikováno) a GitHub (napushováno). Testy spustíte pomocí:
+
+[source,console]
+$ python -m pytest -v test_module
+
+Pro spuštění testů nainstalujte do virtuálního prostředí balík `pytest`.
+
+Testy vyžadují určitý setup repozitářů. Pro jeho vytvoření použijte skript
+`test_environment/setup.sh`. Je třeba nastavit proměnné prostředí
+`GH_TOKEN` a `GH_USER`.
+Token musí příslušet danému uživateli a mít scope `repo`.
+
+Skript využívá program https://hub.github.com/[hub],
+který si *nejprve zprovozněte*.
+
+Testy jsou napsané tak, že pokud váš program funguje dle zadání,
+dají se pouštět opakovaně. Pokud ale dle zadání nefunguje,
+je třeba smazat všechny štítky.
+Alternativně můžete testovací repozitáře smazat pomocí skriptu
+`test_environment/delete.sh` (potřeba scope `delete_repo`) a vytvořit znovu.
+Vytváření repozitářů a Pull Requestů může trvat jednotky minut.
+
+Pro spuštění testů nastavte stejné proměnné prostředí (`GH_TOKEN` a `GH_USER`).
+
+[source,console]
+$ export GH_USER=anicka
+$ export GH_TOKEN=xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+$ python -m pytest -v test
+
+Testy v souboru test_radioactive_waste.py trvají dlouho a mají potenciál
+vyřadit vás na hodinu z přístupu ke GitHub API.
+Když ladíte ostatní testy, doporučujeme je vypínat pomocí přepínače `-k`:
+
+[source,console]
+$ python -m pytest -v -k "not radioactive" test
+
+Testy předpokládají, že se štítky mění podle běhu předchozích testů.
+Nepouštějte tedy jednotlivé testy samostatně.
+
+Testy si můžete zkopírovat k sobě do repozitáře, považujte je za Public Domain.
+Nepřidejte ale do repozitáře omylem soubor `labels.real.cfg`,
+který se v průběhu testů dočasně vytváří a obsahuje váš token.
+
+NOTE: Testy proti živému API, navíc napsané tak,
+že se jednotlivé testy navzájem ovlivňují, jsou ukázkou toho,
+jak se to nemá dělat.
+Pokud narazíte v testech na problém, nebo nevíte jak dál, zeptejte se.
+K tomu, jak se to dělá pořádně, se v předmětu dostaneme později.
+
+WARNING: Testy netestují barevnost výstupu. I neobarvený výstup projde testy.
+Barevnost kontrolujte očima.
+
+== Odevzdání úkolu
+
+Odkazy na repozitář a balíček na testovací PyPI nám pošlete e-mailem.
+Pro odevzdání v repozitáři nastavte tag `v0.5`.
