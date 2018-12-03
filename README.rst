@@ -84,7 +84,7 @@ License
 
 The license used is MIT. To read the license, head over to `LICENSE`__.
 
-.. _LICENSE: https://github.com/skvaryk/filabel-sphinx/blob/master/README.rst
+.. _LICENSE: https://github.com/skvaryk/filabel-sphinx/blob/master/LICENSE
 __ LICENSE_
 
 
