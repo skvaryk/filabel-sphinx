@@ -5,7 +5,7 @@ with open('README.rst') as f:
 
 setup(
     name='filabel-sphinx',
-    version='0.5',
+    version='0.5.0',
     keywords='github labels management pull-requests globs',
     description='Simple CLI & WEB tool for labeling GitHub PRs using globs',
     long_description=long_description,

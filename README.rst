@@ -1,5 +1,7 @@
-filabel
+Filabel
 =======
+
+|license|
 
 Tool for labeling PRs at GitHub by globs.
 
@@ -80,9 +82,10 @@ The sphinx documentation also contains a few doctests. To run those, navigate ag
 License
 -------
 
-The license used is MIT. To read the license, head over to `LICENSE`_.
+The license used is MIT. To read the license, head over to `LICENSE`__.
 
-.. _LICENSE: LICENSE
+.. _LICENSE: https://github.com/skvaryk/filabel-sphinx/blob/master/README.rst
+__ LICENSE_
 
 
 .. |license| image:: https://img.shields.io/github/license/cvut/filabel.svg
