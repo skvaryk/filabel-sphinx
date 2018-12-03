@@ -14,7 +14,10 @@ There are two main ways to use Filabel. Either through its command-line interfac
     code_examples
 
 
-The other option is to deploy Filabel as a web application. To do so, you have to specify the secret webhook key in auth configuration file (see the example in config folder), then you can proceed with the Flask `docs`__.
+The other option is to deploy Filabel as a web application. To do so, you have to specify the secret webhook key in auth configuration file (see the example in config folder), then you can proceed with the Flask `docs`__. To see the GitHub webhook documentation, click `here`__.
 
 .. _docs: http://flask.pocoo.org/docs/1.0/tutorial/deploy/
 __ docs_
+
+.. _here: https://developer.github.com/webhooks/
+__ here_

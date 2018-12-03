@@ -4,7 +4,7 @@ with open('README.rst') as f:
     long_description = ''.join(f.readlines())
 
 setup(
-    name='filabel_cvut',
+    name='filabel-sphinx',
     version='0.5',
     keywords='github labels management pull-requests globs',
     description='Simple CLI & WEB tool for labeling GitHub PRs using globs',

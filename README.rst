@@ -1,73 +1,86 @@
 filabel
 =======
 
-|license| |pypi|
+Tool for labeling PRs at GitHub by globs.
 
-Tool for labeling PRs at GitHub by globs
+Installation guide
+------------------
 
-Installation
-------------
+Using test PyPi:
+::
 
-You can install this app in a standard way using ``setup.py``:
+    $ python3.7 -m pip install --extra-index-url https://testpypi.python.org/pypi/filabel-sphinx
+
+
+If you do not wish to use test PyPi, then clone the Filabel repository and locate it through command line. 
+
+To initiate the installation, execute **one** of these commands:
+
+Using setup.py directly:
+::
+
+    $ python3.7 setup.py install 
+
+Using pip module:
+::
+
+    $ python3.7 -m pip install .
+
+
+
+Basic usage
+-----------
 
 ::
 
-    $ python setup.py install
-    $ pip install -e .
+	$ python3.7 -m filabel --config-auth CONFIG_AUTH_FILE \
+						   --config-labels CONFIG_LABELS_FILE \
+						   username/repository_name1 \
+						   username/repository_name2
 
-Or from PyPI:
+Where ``CONFIG_AUTH_FILENAME`` and ``CONFIG_LABELS_FILE`` are configuration files that can be parsed by `ConfigParser`__. To see how these files are structured, please look at the config directory.
 
-::
+If you are unsure how to setup your GitHub repository's access token, please see `this`__ article.
 
-    $ pip install filabel_cvut
+.. _ConfigParser: https://docs.python.org/3/library/configparser.html
+__ ConfigParser_
 
-
-Usage
------
-
-Run the CLI application simply with command and get to know it via help:
-
-::
-
-    $ filabel --help
+.. _this: https://help.github.com/articles/creating-a-personal-access-token-for-the-command-line/
+__ this_
 
 
-Or run the web service
 
-::
+Further documentation
+---------------------
 
-    $ export FILABEL_CONFIG=/path/to/my_labels.cfg:/path/to/my_auth.cfg
-    $ export FLASK_APP=filabel
-    $ flask run
-
-
-For more info about configuration files, take a look at the content of
-``config`` directory.
-
-
-Documentation
-_____________
-
-Documentation can be built manually by cloning the repository and executing the following sequence:
+If you wish to read the sphinx documentation, you have to install the sphinx module:
 
 ::
 
-    $ pip3 install sphinx
+    $ python3.7 -m pip install sphinx
+
+
+After installing sphinx, navigate to the docs folder and build the documentation:
+
+::
+
     $ cd docs
     $ make html
 
-This should create a .html file in the ``docs/_build/html`` directory.
+After successful build, open ``docs/_build/html/index.html`` in a web browser of your choice.
 
-Doctest examples can be run too by issuing
+
+The sphinx documentation also contains a few doctests. To run those, navigate again to docs folder and run:
 
 ::
 
+    $ cd docs
     $ make doctest
 
 License
 -------
 
-This project is licensed under the MIT License - see the `LICENSE`_ file for more details.
+The license used is MIT. To read the license, head over to `LICENSE`_.
 
 .. _LICENSE: LICENSE
 
@@ -75,6 +88,3 @@ This project is licensed under the MIT License - see the `LICENSE`_ file for mor
 .. |license| image:: https://img.shields.io/github/license/cvut/filabel.svg
     :alt: License
     :target: LICENSE
-.. |pypi| image:: https://badge.fury.io/py/filabel_cvut.svg
-    :alt: PyPi Version
-    :target: https://badge.fury.io/py/filabel_cvut
